@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7b68ce0c-7aeb-4bf8-bcea-7ca0916ba194" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<flow name="hello-worldFlow" doc:id="7227aad8-8fd9-4f09-867f-9a91e7628435" >
+		<http:listener doc:name="Listener" doc:id="236c60c8-3b4c-4dbb-ad83-12da3c58308b" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-payload value='"Hello World (From App deployed via Jenkins)"' doc:name="Set Payload" doc:id="395f2bdc-7298-4b72-a45b-0c5147a8cb6a" />
+		<logger level="INFO" doc:name="Logger" doc:id="18f91acc-f7d4-4480-a1b0-c3ff0695e2a9" message="#[payload]"/>
+	</flow>
+</mule>
